@@ -1,5 +1,6 @@
 #include <codecvt>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 class linklist {
@@ -241,6 +242,57 @@ public:
         }
     }
 
+
+    node* middle_node(node* head) {
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+        }
+        else {
+            node* current = head;
+            int s = 1;
+            //logic to determine size of the list
+            while (current->next != nullptr) {
+                current = current->next;
+                s++;
+            }
+
+            if (s == 1) {
+                return head;
+            }
+
+            //getting the middle number of the node
+            int middleNum = 0;
+
+            if (s%2 != 0) {
+                middleNum = ceil(s/2.0);
+            }
+            else {
+                middleNum = s / 2 + 1;
+            }
+
+            //now we target the middle node to return its header.
+            current = head;
+            int counter = 1;
+            while (current->next != nullptr) {
+
+                if (counter == middleNum) {
+                    return current;
+                }
+                current = current->next;
+                counter++;
+
+
+            }
+
+        }
+
+    }
+
+
+    void show(node* curr) {
+        cout << curr->data << endl;
+    }
+
     ~linklist() {
         this->del_list();
     }
@@ -254,7 +306,13 @@ public:
 int main() {
 
 
+    linklist mylist;
+    for (int i = 1; i <= 8; i++) {
+        mylist.populate(i);
+    }
+    mylist.print();
 
+    mylist.show(mylist.middle_node(mylist.starter));
 
 
 }
