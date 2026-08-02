@@ -38,6 +38,11 @@ public:
     //use to print the whole dll
     void print_all() {
 
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+            return;
+        }
+
         node *current = head;
         while (current != nullptr) {
 
@@ -92,6 +97,7 @@ public:
         else {
             if (pos < 1 || pos > size+1) {
                 cout << "Invalid Position" << endl;
+                return;
             }
             if (pos == size+1) {
                 this->populate(data);
@@ -122,6 +128,107 @@ public:
 
     }
 
+    //delete node from the begining
+    void deleteb() {
+
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+        }
+        else {
+            if (size == 1) {
+                delete head;
+                head = nullptr;
+                tail = nullptr;
+                size--;
+                return;
+            }
+            node *temp = head;
+            head = head->next;
+            head->prev = nullptr;
+            delete temp;
+            temp = nullptr;
+            size--;
+        }
+
+    }
+
+    void delete_anywhere(int pos) {
+
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+        }
+        else {
+            if (pos < 1 || pos > size) {
+                cout << "Invalid Position" << endl;
+                return;
+            }
+
+            if (pos == 1) {
+                this->deleteb();
+                return;
+            }
+
+            node *current = head;
+            int counter = 1;
+            while (current != nullptr) {
+                if (counter == pos) {
+                    if (pos == size) {
+                        node *temp = current->prev;
+                        tail = temp;
+                        temp->next = nullptr;
+                        current->prev = nullptr;
+                        delete current;
+                        current = nullptr;
+                        temp = nullptr;
+                        size--;
+                        break;
+                    }
+                    node *temp1 = current->next;
+                    node *temp2 = current->prev;
+                    current->prev = nullptr;
+                    current->next = nullptr;
+                    temp2->next = temp1;
+                    temp1->prev = temp2;
+                    delete current;
+                    current = nullptr;
+                    size--;
+                    break;
+                }
+                current = current->next;
+                counter++;
+            }
+
+        }
+
+    }
+
+    //destroy the whole list
+    void  destroy() {
+        if (head == nullptr) {
+            return;
+        }
+
+        node *current = nullptr;
+        while (head != nullptr) {
+            current = head;
+            head = head->next;
+            delete current;
+            if (head != nullptr) {
+                head->prev = nullptr;
+            }
+
+
+        }
+        tail = nullptr;
+        size = 0;
+
+
+    }
+
+    ~dlink_list() {
+        this->destroy();
+    }
+
 };
 
 
@@ -134,11 +241,13 @@ int main() {
         theList.populate(i);
     }
 
-    theList.insertb(0);
+    theList.deleteb();
+    theList.insertb(10);
     theList.print_all();
-    theList.print_rev();
-    theList.insert_anywhere(4,-2);
+    theList.delete_anywhere(5);
     theList.print_all();
-    theList.print_rev();
+    cout << (theList.tail)->data << endl;
+    theList.destroy();
+    theList.print_all();
 
 }
