@@ -3,7 +3,11 @@
 #include <cmath>
 using namespace std;
 
+
+
 class linklist {
+
+friend class Stack;
 
     class node {
         public:

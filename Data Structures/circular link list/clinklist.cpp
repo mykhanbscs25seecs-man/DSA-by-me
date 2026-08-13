@@ -3,12 +3,17 @@ using namespace std;
 
 class Clinklist {
 
+friend class Josephus;
+
+public:
+
     class node {
         public:
         int data;
         node *next;
     };
 
+private:
     node *head = nullptr;
 
 
@@ -205,9 +210,4 @@ public:
 };
 
 
-int main() {
 
-
-
-
-}

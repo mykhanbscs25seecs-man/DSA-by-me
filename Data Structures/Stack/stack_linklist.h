@@ -1,3 +1,11 @@
+//
+// Created by User on 8/10/2026.
+//
+#pragma once
+
+#ifndef DSA_BYME_STACK_LINKLIST_H
+#define DSA_BYME_STACK_LINKLIST_H
+
 #include <iostream>
 #include <C:\Users\User\OneDrive\Desktop\3rd sem\Dsa\DSA-byMe\DSA-by-me\Data Structures\linked list\linklist.h>
 using namespace std;
@@ -55,15 +63,8 @@ public:
 
 };
 
-int main() {
 
-    Stack s;
-    for (int i = 1; i <= 10; i++) {
-        s.push(i);
-    }
-    s.peek();
-    s.pop();
-    s.peek();
-    s.tell_size();
 
-}
+
+
+#endif //DSA_BYME_STACK_LINKLIST_H
