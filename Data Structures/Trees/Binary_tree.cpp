@@ -45,9 +45,24 @@ public:
         print_preorder(the_root->left);
         print_preorder(the_root->right);
 
+    }
 
+    void inorder(Node* the_root) {
+        if (the_root == nullptr) {
+            return;
+        }
+        inorder(the_root->left);
+        cout << the_root->data << endl;
+        inorder(the_root->right);
+    }
 
-
+    void postorder(Node* the_root) {
+        if (the_root == nullptr) {
+            return;
+        }
+        postorder(the_root->left);
+        postorder(the_root->right);
+        cout << the_root->data << endl;
     }
 
     void destoryTree(Node* the_root) {
@@ -73,7 +88,7 @@ int main() {
     vector<int> v = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
 
 
-    tree.print_preorder(tree.createTree(v));
+    tree.postorder(tree.createTree(v));
 
 }
 
