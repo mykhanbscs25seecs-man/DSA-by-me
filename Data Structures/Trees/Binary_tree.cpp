@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <vector>
 using namespace std;
 
@@ -74,6 +75,22 @@ public:
         delete the_root;
     }
 
+    void LevelOrderTraversal(Node* root) { //iterative apporoach
+        queue<Node*> q;
+        q.push(root);
+        while (!q.empty()) {
+            Node* temp = q.front();
+            q.pop();
+            cout << temp->data << endl;
+            if (temp->left != nullptr) {
+                q.push(temp->left);
+            }
+            if (temp->right != nullptr) {
+                q.push(temp->right);
+            }
+        }
+    }
+
     ~Binary_Tree() {
         destoryTree(root);
     }
@@ -88,7 +105,7 @@ int main() {
     vector<int> v = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
 
 
-    tree.postorder(tree.createTree(v));
+    tree.LevelOrderTraversal(tree.createTree(v));
 
 }
 
