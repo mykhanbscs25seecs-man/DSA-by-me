@@ -81,12 +81,18 @@ public:
         while (!q.empty()) {
             Node* temp = q.front();
             q.pop();
-            cout << temp->data << endl;
+            cout << temp->data << " ";
             if (temp->left != nullptr) {
                 q.push(temp->left);
+
             }
             if (temp->right != nullptr) {
                 q.push(temp->right);
+
+            }
+            //extra code just print elements on their level, a little output formatting, nothing more.
+            if (temp->left != nullptr && temp->right != nullptr) {
+                cout << endl;
             }
         }
     }
@@ -102,7 +108,7 @@ public:
 
 int main() {
     Binary_Tree tree;
-    vector<int> v = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
+    vector<int> v = {1,2,-1,8,-1,-1,3,4,-1,-1,5,9,-1,-1,0,-1,-1};
 
 
     tree.LevelOrderTraversal(tree.createTree(v));
